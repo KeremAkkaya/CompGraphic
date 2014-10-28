@@ -1,0 +1,19 @@
+#version 130
+
+in vec3 vs_out_color;
+in vec2 vs_out_pos;
+
+out vec3 o_color;
+
+uniform int cell_size;
+
+void main()
+{
+    float x = mod(vs_out_pos.x, 2 * cell_size);
+    float y = mod(vs_out_pos.y, 2 * cell_size);
+
+    if ((x < cell_size && y < cell_size) || (x > cell_size && y > cell_size))
+       o_color = vs_out_color;
+    else
+       o_color = vec3(1, 1, 1);
+}
